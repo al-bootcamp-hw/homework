@@ -90,7 +90,13 @@ fun main() = runBlocking {
     val accounts = fetchAccounts()
     val negativeBalanceAccounts = accounts.filter { it.balance < 0.0 }
     val totalBalance = accounts.sumOf { it.balance }
-    println("Accounts With Negative Balance: $negativeBalanceAccounts")
+    
+    println("Accounts With Negative Balance:")
+
+    for (account in negativeBalanceAccounts) {
+        println("id: ${account.id} | name: ${account.name} | balance: ${account.balance.asCurrency()}")
+    }
+
     println("Total Balance of Accounts: ${totalBalance.asCurrency()}")
 
 }
